@@ -70,10 +70,10 @@ class TextRank4Sentence(object):
                 self.graph[x, y] = similarity
                 self.graph[y, x] = similarity
                 
-        for x in xrange(sentences_num):
-            row_sum = np.sum(self.graph[x, :])
-            if row_sum > 0:
-                self.graph[x, :] = self.graph[x, :] / row_sum
+#         for x in xrange(sentences_num):
+#             row_sum = np.sum(self.graph[x, :])
+#             if row_sum > 0:
+#                 self.graph[x, :] = self.graph[x, :] / row_sum
                 
         # print self.graph
                 

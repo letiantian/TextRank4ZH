@@ -95,10 +95,10 @@ class TextRank4Keyword(object):
                 self.graph[index1][index2] = 1.0
                 self.graph[index2][index1] = 1.0
         
-        for x in xrange(words_number):
-            row_sum = np.sum(self.graph[x, :])
-            if row_sum > 0:
-                self.graph[x, :] = self.graph[x, :] / row_sum
+#         for x in xrange(words_number):
+#             row_sum = np.sum(self.graph[x, :])
+#             if row_sum > 0:
+#                 self.graph[x, :] = self.graph[x, :] / row_sum
         
         nx_graph = nx.from_numpy_matrix(self.graph)
         scores = nx.pagerank(nx_graph) # this is a dict

@@ -14,8 +14,8 @@ tr4w = TextRank4Keyword(stop_words_file='./stopword.data')  # 导入停止词
 tr4w.train(text=text, speech_tag_filter=True, lower=True, window=2)  
 
 print '关键词：'
-# 10个关键词且每个的长度最小为2
-print '/'.join(tr4w.get_keywords(10, word_min_len=2))  
+# 20个关键词且每个的长度最小为1
+print '/'.join(tr4w.get_keywords(20, word_min_len=1))  
 
 print '关键短语：'
 # 20个关键词去构造短语，短语在原文本中出现次数最少为2
