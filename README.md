@@ -70,7 +70,7 @@ TextRank4ZH暂不支持使用easy_install、pip来安装，使用者可以将`te
 
 ##原理
 
-Text的详细原理请参考：
+TextRank的详细原理请参考：
 
 > Mihalcea R, Tarau P. TextRank: Bringing order into texts[C]. Association for Computational Linguistics, 2004.
 
@@ -144,6 +144,74 @@ print '\n'.join(tr4s.get_key_sentences(num=3))
 ```
 
 ##使用说明
+
+类TextRank4Keyword、TextRank4Sentence在处理一段文本时会将文本拆分成4种格式：
+
+sentences：由句子组成的列表。
+words_no_filter：对sentences中每个句子分词而得到的两级列表。
+words_no_stop_words：去掉words_no_filter中的停止词而得到的两级列表。
+words_all_filters：保留words_no_stop_words中指定词性的单词而得到的两级列表。
+
+例如，对于：
+```
+这间酒店位于北京东三环，里面摆放很多雕塑，文艺气息十足。答谢宴于晚上8点开始。
+```
+在`speech_tag_filter=True, lower=True, source = 'all_filters'`时，
+sentences：
+```
+['这间酒店位于北京东三环，里面摆放很多雕塑，文艺气息十足', 
+'答谢宴于晚上8点开始']
+```
+words_no_filter：
+```
+[
+    [ '这', '间, '酒店, '位于, '北京, '东三环, '里面, '摆放, '很多, '雕塑, '文艺, '气息, '十足'],
+    [ '答谢', '宴于, '晚上, '8, '点, '开始' ]
+]
+```
+words_no_stop_words：
+```
+[
+    [ '间', '酒店, '位于, '北京, '东三环, '里面, '摆放, '很多, '雕塑, '文艺, '气息, '十足' ],
+    [ '答谢', '宴于, '晚上, '8, '点' ]
+]
+```
+words_all_filters：
+```
+[
+    [ '酒店', '位于, '北京, '东三环, '摆放, '雕塑, '文艺, '气息' ],
+    [ '答谢', '宴于, '晚上' ]
+]
+```
+
+###class TextRank4Keyword
+位于`textrank4zh/TextRank4Keyword.py`中，
+
+**构造函数：**
+
+`stop_words_file`：默认值为None，此时内部停止词表为空；可以设置为文件路径（字符串），将从停止词文件中提取停止词。
+
+`delimiters`：默认值是`'?!;？！。；…\n'`，用来将文本拆分为句子。
+
+**函数train(...)：**
+
+`text`：文本内容，字符串。
+
+`window`：窗口大小，int，用来构造单词之间的边。默认值为2。
+
+`lower`：是否将文本转换为小写。默认为False。
+
+`speech_tag_filter`：若值为True，将调用内部的词性列表来过滤生成words_all_filters。若值为False，words_all_filters与words_no_stop_words相同。
+
+`vertex_source`：选择使用words_no_filter, words_no_stop_words, words_all_filters中的哪一个来构造pagerank对应的图中的节点。默认值为`'all_filters'`，可选值为`'no_filter', 'no_stop_words', 'all_filters'`。关键词也来自`vertex_source`。
+
+`edge_source`：选择使用words_no_filter, words_no_stop_words, words_all_filters中的哪一个来构造pagerank对应的图中的节点之间的边。默认值为`'no_stop_words'`，可选值为`'no_filter', 'no_stop_words', 'all_filters'`。边的构造要结合`window`参数。
+
+
+
+
+
+
 
 
 

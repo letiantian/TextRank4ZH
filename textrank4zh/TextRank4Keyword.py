@@ -10,7 +10,7 @@ import numpy as np
 
 class TextRank4Keyword(object):
     
-    def __init__(self, stop_words_file = None, delimiters='?!;？！。；…\n'):
+    def __init__(self, stop_words_file = None, delimiters = '?!;？！。；…\n'):
         ''' '''
         self.text = ''
         self.keywords = []
@@ -26,10 +26,10 @@ class TextRank4Keyword(object):
         self.graph = None
         
     def train(self, text, window = 2, lower = False, speech_tag_filter=True, 
-              candidate_words_source = 'all_filters',
-              pagerank_words_source = 'no_stop_words'):
+              vertex_source = 'all_filters',
+              edge_source = 'no_stop_words'):
         '''
-        candidate_words_source, pagerank_words_source: no_filter, no_stop_words, all_filters这三个值
+        vertex_source, edge_source: no_filter, no_stop_words, all_filters这三个值
         '''
         
         self.text = text
@@ -42,24 +42,24 @@ class TextRank4Keyword(object):
                                                                                                      lower=lower, 
                                                                                                      speech_tag_filter=speech_tag_filter)
         
-        if candidate_words_source == 'no_filter':
-            candidate_words_source = self.words_no_filter
-        elif candidate_words_source == 'no_stop_words':
-            candidate_words_source = self.words_no_stop_words
+        if vertex_source == 'no_filter':
+            vertex_source = self.words_no_filter
+        elif vertex_source == 'no_stop_words':
+            vertex_source = self.words_no_stop_words
         else:
-            candidate_words_source = self.words_all_filters
+            vertex_source = self.words_all_filters
 
-        if pagerank_words_source == 'no_filter':
-            pagerank_words_source = self.words_no_filter
-        elif candidate_words_source == 'all_filters':
-            pagerank_words_source = self.words_all_filters
+        if edge_source == 'no_filter':
+            edge_source = self.words_no_filter
+        elif vertex_source == 'all_filters':
+            edge_source = self.words_all_filters
         else:
-            pagerank_words_source = self.words_no_stop_words
+            edge_source = self.words_no_stop_words
             
         
         
         index = 0
-        for words in candidate_words_source:
+        for words in vertex_source:
             for word in words:
                 if not self.word_index.has_key(word):
                     self.word_index[word] = index
@@ -69,7 +69,7 @@ class TextRank4Keyword(object):
         words_number = index # 单词数量
         self.graph = np.zeros((words_number, words_number))
         
-        for word_list in pagerank_words_source:
+        for word_list in edge_source:
             for w1, w2 in self.combine(word_list, window):
                 if not self.word_index.has_key(w1):
                     continue

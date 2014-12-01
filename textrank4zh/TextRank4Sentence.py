@@ -123,9 +123,18 @@ class TextRank4Sentence(object):
 if __name__ == '__main__':
 
     import codecs
-    text = codecs.open('../text/03.txt', 'r', 'utf-8').read()
-    # text = "坏人坏人坏人坏人坏人。你好"
+    # text = codecs.open('../text/03.txt', 'r', 'utf-8').read()
+    text = "这间酒店位于北京东三环，里面摆放很多雕塑，文艺气息十足。答谢宴于晚上8点开始。"
     tr4s = TextRank4Sentence(stop_words_file='../stopword.data')
     tr4s.train(text=text, speech_tag_filter=True, lower=True, source = 'all_filters')
-    
     print '\n'.join(tr4s.get_key_sentences(num=1))
+    
+    print '\n'.join(tr4s.sentences)
+    for wl in tr4s.words_no_filter:
+        print '[', ', \''.join(wl), ']'
+    print
+    for wl in tr4s.words_no_stop_words:
+        print '[', ', \''.join(wl), ']'
+    print
+    for wl in tr4s.words_all_filters:
+        print '[', ', \''.join(wl), ']'
