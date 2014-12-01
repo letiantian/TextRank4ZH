@@ -161,12 +161,14 @@ print '\n'.join(tr4s.get_key_sentences(num=3)) # 重要性最高的三个句子
 ```
 这间酒店位于北京东三环，里面摆放很多雕塑，文艺气息十足。答谢宴于晚上8点开始。
 ```
-在`speech_tag_filter=True, lower=True, source = 'all_filters'`时，
+对类TextRank4Sentence，在`speech_tag_filter=True, lower=True, source = 'all_filters'`时，
+
 sentences：
 ```
 ['这间酒店位于北京东三环，里面摆放很多雕塑，文艺气息十足', 
 '答谢宴于晚上8点开始']
 ```
+
 words_no_filter：
 ```
 [
@@ -174,6 +176,7 @@ words_no_filter：
     [ '答谢', '宴于, '晚上, '8, '点, '开始' ]
 ]
 ```
+
 words_no_stop_words：
 ```
 [
@@ -182,6 +185,7 @@ words_no_stop_words：
 ]
 ```
 words_all_filters：
+
 ```
 [
     [ '酒店', '位于, '北京, '东三环, '摆放, '雕塑, '文艺, '气息' ],
