@@ -183,7 +183,7 @@ words_all_filters：
 ]
 ```
 
-类TextRank4Keyword位于`textrank4zh/TextRank4Keyword.py`中，类TextRank4Sentence位于`textrank4zh/TextRank4Sentence.py`中，详情请参考源码注释。
+类TextRank4Keyword位于`textrank4zh/TextRank4Keyword.py`中，类TextRank4Sentence位于`textrank4zh/TextRank4Sentence.py`中，**类的实现、函数的参数请参考源码注释。**
 
 
 
