@@ -11,7 +11,15 @@ import math
 class TextRank4Sentence(object):
     
     def __init__(self, stop_words_file = None, delimiters='?!;？！。；…\n'):
+        '''
+        `stop_words_file`：默认值为None，此时内部停止词表为空；可以设置为文件路径（字符串），将从停止词文件中提取停止词。
+        `delimiters`：默认值是`'?!;？！。；…\n'`，用来将文本拆分为句子。
         
+        self.sentences：由句子组成的列表。
+        self.words_no_filter：对sentences中每个句子分词而得到的两级列表。
+        self.words_no_stop_words：去掉words_no_filter中的停止词而得到的两级列表。
+        self.words_all_filters：保留words_no_stop_words中指定词性的单词而得到的两级列表。
+        '''
         self.seg = Segmentation(stop_words_file=stop_words_file, delimiters=delimiters)
         
         self.sentences = None
@@ -25,7 +33,13 @@ class TextRank4Sentence(object):
     def train(self, text, lower = False, speech_tag_filter=True,
               source = 'no_stop_words', sim_func = 'standard'):
         ''' 
-        source: no_filter, no_stop_words, all_filters这三个值
+       `text`：文本内容，字符串。
+        `lower`：是否将文本转换为小写。默认为False。
+        `speech_tag_filter`：若值为True，将调用内部的词性列表来过滤生成words_all_filters。
+                        若值为False，words_all_filters与words_no_stop_words相同。
+        `source`：选择使用words_no_filter, words_no_stop_words, words_all_filters中的哪一个来生成句子之间的相似度。
+                默认值为`'all_filters'`，可选值为`'no_filter', 'no_stop_words', 'all_filters'`。
+        `sim_func`： 指定计算句子相似度的函数。当前只有一个函数，对应默认值`standard`。
         '''
         
         self.key_sentences = []
@@ -77,6 +91,7 @@ class TextRank4Sentence(object):
 
     def _get_similarity_standard(self, word_list1, word_list2):
         ''' 
+        默认的用于计算两个句子相似度的函数。
         word_list1, word_list2: 分别代表两个句子，都是由单词组成的列表
         '''
         vector1, vector2 =self._gen_vectors(word_list1, word_list2)
@@ -101,7 +116,10 @@ class TextRank4Sentence(object):
         
         
     def _gen_vectors(self, word_list1, word_list2):
-        ''' '''
+        '''
+        两个句子转换成两个同样大小向量。可以通过这两个向量来计算两个句子的相似度。
+        word_list1, word_list2: 分别代表两个句子，都是由单词组成的列表
+        '''
         words = list(set(word_list1 + word_list2))        
         vector1 = [float(word_list1.count(word)) for word in words]
         vector2 = [float(word_list2.count(word)) for word in words]
@@ -109,6 +127,8 @@ class TextRank4Sentence(object):
             
     def get_key_sentences(self, num = 6, sentence_min_len = 6):
         '''
+        获取最重要的num个长度大于等于sentence_min_len的句子用来生成摘要。
+        返回列表。
         '''
         result = []
         count = 0

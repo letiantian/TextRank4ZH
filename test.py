@@ -14,7 +14,7 @@ tr4w.train(text=text, speech_tag_filter=True, lower=True, window=2)
 print '关键词：'
 print '/'.join(tr4w.get_keywords(10, word_min_len=2))
 
-print '关键词组：'
+print '关键短语：'
 print '/'.join(tr4w.get_keyphrases(keywords_num=20, min_occur_num= 2))
     
 tr4s = TextRank4Sentence(stop_words_file='./stopword.data')

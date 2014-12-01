@@ -86,13 +86,13 @@ w1, w2, w3, w4, w5, ..., wn
 基于上面构成图，可以计算出每个单词节点的重要性。最重要的若干单词可以作为关键词。
 
 
-###关键词组提取
+###关键短语提取
 参照[关键词提取](#关键词提取)提取出若干关键词。若原文本中存在若干个关键词相邻的情况，那么这些关键词可以构成一个关键词组。
 
 例如，在一篇介绍`支持向量机`的文章中，可以找到关键词`支持`、`向量`、`机`，通过关键词组提取，可以得到`支持向量机`。
 
 ###摘要生成
-将每个句子看成图中的一个节点，若两个句子之间有相似性，认为对应的两个节点之间有一个无向有权边，权值是相似性。
+将每个句子看成图中的一个节点，若两个句子之间有相似性，认为对应的两个节点之间有一个无向有权边，权值是相似度。
 
 通过pagerank算法计算得到的重要性最高的若干句子可以当作摘要。
 
@@ -105,10 +105,6 @@ w1, w2, w3, w4, w5, ..., wn
 `test.py`提供了使用的示例：
 ```
 #-*- encoding:utf-8 -*-
-'''
-Created on Dec 1, 2014
-@author: letian
-'''
 
 import codecs
 from textrank4zh import TextRank4Keyword, TextRank4Sentence
@@ -120,7 +116,7 @@ tr4w.train(text=text, speech_tag_filter=True, lower=True, window=2)
 print '关键词：'
 print '/'.join(tr4w.get_keywords(10, word_min_len=2))
 
-print '关键词组：'
+print '关键短语：'
 print '/'.join(tr4w.get_keyphrases(keywords_num=20, min_occur_num= 2))
     
 tr4s = TextRank4Sentence(stop_words_file='./stopword.data')
@@ -134,7 +130,7 @@ print '\n'.join(tr4s.get_key_sentences(num=3))
 ```
 媒体/高圆圆/宾客/新人/记者/北京/赵又廷/谢娜/现身/答谢
 ```
-没有关键词组。
+没有关键短语。
 
 得到的摘要：
 ```
@@ -147,10 +143,13 @@ print '\n'.join(tr4s.get_key_sentences(num=3))
 
 类TextRank4Keyword、TextRank4Sentence在处理一段文本时会将文本拆分成4种格式：
 
-sentences：由句子组成的列表。
-words_no_filter：对sentences中每个句子分词而得到的两级列表。
-words_no_stop_words：去掉words_no_filter中的停止词而得到的两级列表。
-words_all_filters：保留words_no_stop_words中指定词性的单词而得到的两级列表。
+**sentences：**由句子组成的列表。
+
+**words_no_filter：**对sentences中每个句子分词而得到的两级列表。
+
+**words_no_stop_words：**去掉words_no_filter中的停止词而得到的两级列表。
+
+**words_all_filters：**保留words_no_stop_words中指定词性的单词而得到的两级列表。
 
 例如，对于：
 ```
@@ -184,28 +183,7 @@ words_all_filters：
 ]
 ```
 
-###class TextRank4Keyword
-位于`textrank4zh/TextRank4Keyword.py`中，
-
-**构造函数：**
-
-`stop_words_file`：默认值为None，此时内部停止词表为空；可以设置为文件路径（字符串），将从停止词文件中提取停止词。
-
-`delimiters`：默认值是`'?!;？！。；…\n'`，用来将文本拆分为句子。
-
-**函数train(...)：**
-
-`text`：文本内容，字符串。
-
-`window`：窗口大小，int，用来构造单词之间的边。默认值为2。
-
-`lower`：是否将文本转换为小写。默认为False。
-
-`speech_tag_filter`：若值为True，将调用内部的词性列表来过滤生成words_all_filters。若值为False，words_all_filters与words_no_stop_words相同。
-
-`vertex_source`：选择使用words_no_filter, words_no_stop_words, words_all_filters中的哪一个来构造pagerank对应的图中的节点。默认值为`'all_filters'`，可选值为`'no_filter', 'no_stop_words', 'all_filters'`。关键词也来自`vertex_source`。
-
-`edge_source`：选择使用words_no_filter, words_no_stop_words, words_all_filters中的哪一个来构造pagerank对应的图中的节点之间的边。默认值为`'no_stop_words'`，可选值为`'no_filter', 'no_stop_words', 'all_filters'`。边的构造要结合`window`参数。
+类TextRank4Keyword位于`textrank4zh/TextRank4Keyword.py`中，类TextRank4Sentence位于`textrank4zh/TextRank4Sentence.py`中，详情请参考源码注释。
 
 
 
