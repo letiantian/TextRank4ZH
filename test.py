@@ -4,6 +4,10 @@ Created on Dec 1, 2014
 @author: letian
 '''
 
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
 import codecs
 from textrank4zh import TextRank4Keyword, TextRank4Sentence
 
