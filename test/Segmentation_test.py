@@ -8,7 +8,7 @@ from textrank4zh import Segmentation
 
 seg = Segmentation.Segmentation()
 
-# text = codecs.open('../text/01.txt', 'r', 'utf-8', 'ignore').read()
+text = codecs.open('./doc/01.txt', 'r', 'utf-8', 'ignore').read()
 text = "视频里，我们的杰宝热情地用英文和全场观众打招呼并清唱了一段《Heal The World》。我们的世界充满了未知数。"
 
 result = seg.segment(text=text, lower=True)
