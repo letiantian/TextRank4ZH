@@ -32,3 +32,7 @@ tr4s.train(text=text, speech_tag_filter=True, lower=True, source = 'all_filters'
 
 print '摘要：'
 print '\n'.join(tr4s.get_key_sentences(num=3)) # 重要性最高的三个句子
+
+import os
+print __file__
+print os.path.dirname(os.path.realpath(__file__))
