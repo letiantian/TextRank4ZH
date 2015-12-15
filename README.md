@@ -1,5 +1,4 @@
 # TextRank4ZH
------
 
 TextRank算法可以用来从文本中提取关键词和摘要（重要的句子）。TextRank4ZH是针对中文文本的TextRank算法的python算法实现。
 
@@ -193,8 +192,8 @@ TODO.
 
 类的实现、函数的参数请参考源码注释。
 
-
-
+## License
+[MIT](./LICENSE)
 
 
 
