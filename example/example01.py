@@ -14,7 +14,7 @@ from textrank4zh import TextRank4Keyword, TextRank4Sentence
 text = codecs.open('../test/doc/01.txt', 'r', 'utf-8').read()
 tr4w = TextRank4Keyword()
 
-tr4w.analyze(text=text, lower=True, window=2)  
+tr4w.analyze(text=text, lower=True, window=2)   # py2中text必须是utf8编码的str或者unicode对象，py3中必须是utf8编码的bytes或者str对象
 
 print( '关键词：' )
 for item in tr4w.get_keywords(20, word_min_len=1):

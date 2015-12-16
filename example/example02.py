@@ -18,19 +18,19 @@ tr4w.analyze(text=text, lower=True, window=2)
 print()
 print('sentences:')
 for s in tr4w.sentences:
-    print(s)                 # python中是unicode类型。py3中是str类型。
+    print(s)                 # py2中是unicode类型。py3中是str类型。
 
 print()
 print('words_no_filter')
 for words in tr4w.words_no_filter:
-    print('/'.join(words))   # python中是unicode类型。py3中是str类型。
+    print('/'.join(words))   # py2中是unicode类型。py3中是str类型。
 
 print()
 print('words_no_stop_words')
 for words in tr4w.words_no_stop_words:
-    print('/'.join(words))   # python中是unicode类型。py3中是str类型。
+    print('/'.join(words))   # py2中是unicode类型。py3中是str类型。
 
 print()
 print('words_all_filters')
 for words in tr4w.words_all_filters:
-    print('/'.join(words))   # python中是unicode类型。py3中是str类型。
+    print('/'.join(words))   # py2中是unicode类型。py3中是str类型。

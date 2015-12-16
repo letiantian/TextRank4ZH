@@ -81,7 +81,7 @@ from textrank4zh import TextRank4Keyword, TextRank4Sentence
 text = codecs.open('../test/doc/01.txt', 'r', 'utf-8').read()
 tr4w = TextRank4Keyword()
 
-tr4w.analyze(text=text, lower=True, window=2)  # text必须是utf8编码的字符串或者unicode对象
+tr4w.analyze(text=text, lower=True, window=2)  # py2中text必须是utf8编码的str或者unicode对象，py3中必须是utf8编码的bytes或者str对象
 
 print( '关键词：' )
 for item in tr4w.get_keywords(20, word_min_len=1):
@@ -170,22 +170,22 @@ tr4w.analyze(text=text, lower=True, window=2)
 print()
 print('sentences:')
 for s in tr4w.sentences:
-    print(s)                 # python中是unicode类型。py3中是str类型。
+    print(s)                 # py2中是unicode类型。py3中是str类型。
 
 print()
 print('words_no_filter')
 for words in tr4w.words_no_filter:
-    print('/'.join(words))   # python中是unicode类型。py3中是str类型。
+    print('/'.join(words))   # py2中是unicode类型。py3中是str类型。
 
 print()
 print('words_no_stop_words')
 for words in tr4w.words_no_stop_words:
-    print('/'.join(words))   # python中是unicode类型。py3中是str类型。
+    print('/'.join(words))   # py2中是unicode类型。py3中是str类型。
 
 print()
 print('words_all_filters')
 for words in tr4w.words_all_filters:
-    print('/'.join(words))   # python中是unicode类型。py3中是str类型。
+    print('/'.join(words))   # py2中是unicode类型。py3中是str类型。
 ```
 
 运行结果如下：
