@@ -87,8 +87,7 @@ class SentenceSegmentation(object):
         Keyword arguments:
         delimiters -- 可迭代对象，用来拆分句子
         """
-        self.delimiters = delimiters
-        # set([util.as_text(item) for item in delimiters])
+        self.delimiters = set([util.as_text(item) for item in delimiters])
     
     def segment(self, text):
         res = [util.as_text(text)]

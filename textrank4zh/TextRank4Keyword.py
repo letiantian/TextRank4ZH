@@ -58,7 +58,8 @@ class TextRank4Keyword(object):
                             默认值为`'no_stop_words'`，可选值为`'no_filter', 'no_stop_words', 'all_filters'`。边的构造要结合`window`参数。
         """
         
-        self.text = util.as_text(text)
+        # self.text = util.as_text(text)
+        self.text = text
         self.word_index = {}
         self.index_word = {}
         self.keywords = []

@@ -1,8 +1,13 @@
 #-*- encoding:utf-8 -*-
-from __future__ import (absolute_import, division, print_function,
-                        unicode_literals)
+from __future__ import print_function
 
 import sys
+try:
+    reload(sys)
+    sys.setdefaultencoding('utf-8')
+except:
+    pass
+
 import codecs
 from textrank4zh import Segmentation
 
