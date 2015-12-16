@@ -16,7 +16,15 @@ def testCombine():
     print
     for item in util.combine(['a', 'b', 'c', 'd'], 3):
         print (item)
-     
+
+def testDebug():
+    import sys
+    print(sys.getdefaultencoding())
+    util.debug('你好')
+    util.debug(u'世界')
+
+
 if __name__ == "__main__":
     testAttrDict()
     testCombine()
+    testDebug()

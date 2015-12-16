@@ -13,6 +13,12 @@ import networkx as nx
 import numpy as np
 import sys
 
+try:
+    reload(sys)
+    sys.setdefaultencoding('utf-8')
+except:
+    pass
+    
 sentence_delimiters = ['?', '!', ';', '？', '！', '。', '；', '……', '…', '\n']
 allow_speech_tags = ['an', 'i', 'j', 'l', 'n', 'nr', 'nrfg', 'ns', 'nt', 'nz', 't', 'v', 'vd', 'vn', 'eng']
 
