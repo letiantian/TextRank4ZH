@@ -5,16 +5,26 @@ TextRank算法可以用来从文本中提取关键词和摘要（重要的句子
 
 ## 安装
 
-```plain
-$ git clone https://github.com/someus/TextRank4ZH.git
-$ cd TextRank4ZH/
+方式1：
+```
+$ python setup.py install --user
+```
+
+方式2：
+```
 $ sudo python setup.py install
 ```
 
-如果没有root权限，可以安装到用户目录中：
-```plain
-$ python setup.py install --user
+方式3：
 ```
+$ pip install ChineseTone --user
+```
+
+方式4：
+```
+$ sudo pip install ChineseTone
+```
+
 
 ## 卸载
 ```plain
