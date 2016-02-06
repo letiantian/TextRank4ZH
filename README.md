@@ -25,6 +25,8 @@ $ pip install ChineseTone --user
 $ sudo pip install ChineseTone
 ```
 
+Python 3下需要将上面的python改成python3，pip改成pip3。
+
 
 ## 卸载
 ```plain
