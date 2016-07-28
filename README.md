@@ -17,12 +17,12 @@ $ sudo python setup.py install
 
 方式3：
 ```
-$ pip install ChineseTone --user
+$ pip install textrank4zh --user
 ```
 
 方式4：
 ```
-$ sudo pip install ChineseTone
+$ sudo pip install textrank4zh
 ```
 
 Python 3下需要将上面的python改成python3，pip改成pip3。
