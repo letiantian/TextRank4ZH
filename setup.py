@@ -6,7 +6,7 @@ Please go to https://github.com/someus/TextRank4ZH for more info.
 
 setup(
     name='textrank4zh',
-    version='0.2',
+    version='0.3',
     description='Extract keywords and abstract Chinese article',
     long_description=LONGDOC,
     author='Letian Sun',
