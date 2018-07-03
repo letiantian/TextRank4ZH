@@ -2,7 +2,6 @@
 
 TextRank算法可以用来从文本中提取关键词和摘要（重要的句子）。TextRank4ZH是针对中文文本的TextRank算法的python算法实现。
 
-
 ## 安装
 
 方式1：
@@ -47,6 +46,8 @@ networkx >= 1.9.1
 TextRank的详细原理请参考：
 
 > Mihalcea R, Tarau P. TextRank: Bringing order into texts[C]. Association for Computational Linguistics, 2004.
+
+关于TextRank4ZH的原理和使用介绍：[使用TextRank算法为文本生成关键字和摘要](https://www.letiantian.me/2014-12-01-text-rank/)
 
 ### 关键词提取
 将原文本拆分为句子，在每个句子中过滤掉停用词（可选），并只保留指定词性的单词（可选）。由此可以得到句子的集合和单词的集合。
@@ -148,7 +149,7 @@ for item in tr4s.get_key_sentences(num=3):
 
 ```
 
-##使用说明
+## 使用说明
 
 类TextRank4Keyword、TextRank4Sentence在处理一段文本时会将文本拆分成4种格式：
 
