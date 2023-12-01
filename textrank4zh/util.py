@@ -186,7 +186,7 @@ def sort_sentences(sentences, words, sim_func = get_similarity, pagerank_config 
             graph[x, y] = similarity
             graph[y, x] = similarity
             
-    nx_graph = nx.from_numpy_matrix(graph)
+    nx_graph = nx.from_numpy_array(graph)
     scores = nx.pagerank(nx_graph, **pagerank_config)              # this is a dict
     sorted_scores = sorted(scores.items(), key = lambda item: item[1], reverse=True)
 
