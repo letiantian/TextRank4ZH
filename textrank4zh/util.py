@@ -157,7 +157,7 @@ def sort_words(vertex_source, edge_source, window = 2, pagerank_config = {'alpha
 
     debug('graph:\n', graph)
     
-    nx_graph = nx.from_numpy_matrix(graph)
+    nx_graph = nx.from_numpy_array(graph)
     scores = nx.pagerank(nx_graph, **pagerank_config)          # this is a dict
     sorted_scores = sorted(scores.items(), key = lambda item: item[1], reverse=True)
     for index, score in sorted_scores:
@@ -186,7 +186,7 @@ def sort_sentences(sentences, words, sim_func = get_similarity, pagerank_config 
             graph[x, y] = similarity
             graph[y, x] = similarity
             
-    nx_graph = nx.from_numpy_matrix(graph)
+    nx_graph = nx.from_numpy_array(graph)
     scores = nx.pagerank(nx_graph, **pagerank_config)              # this is a dict
     sorted_scores = sorted(scores.items(), key = lambda item: item[1], reverse=True)
 
